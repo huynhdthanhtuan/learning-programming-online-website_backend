@@ -4,7 +4,7 @@ const { errorHandler } = require("../helpers/dbErrorHandler");
 
 exports.signup = (req, res) => {
   const user = new User(req.body);
-  console.log(req.body)
+
   user.save((err, user) => {
     if (err) {
       return res.status(400).json({
@@ -27,7 +27,7 @@ exports.signin = (req, res, next) => {
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: "User not found. Please signup.",
+        error: "Account not found. Please signup.",
       });
     } else {
       // if user is found make sure email and password match
@@ -45,14 +45,12 @@ exports.signin = (req, res, next) => {
       res.cookie("t", token, { expire: new Date() + 9999 });
 
       // return response with user and token to client
-      const { _id, name, email, role } = user;
+      const { _id, role } = user;
 
       return res.json({
         token: token,
         user: {
           _id,
-          email,
-          name,
           role,
         },
       });
@@ -63,4 +61,16 @@ exports.signin = (req, res, next) => {
 exports.signout = (req, res, next) => {
   res.clearCookie("t");
   res.json({ message: "Sign out success !!" });
+};
+
+exports.isAuthenticated = (req, res, next) => {
+  if (typeof window == "undefined") {
+    return false;
+  } else {
+    if (localStorage.getItem("jwt")) {
+      return JSON.parse(localStorage.getItem("jwt"));
+    } else {
+      return false;
+    }
+  }
 };

@@ -11,8 +11,7 @@ const Course = new Schema(
       required: true,
     },
     description: {
-      goal: String,
-      achievement: [{ type: String }],
+      type: String,
     },
     price: {
       type: Number,
@@ -38,13 +37,8 @@ const Course = new Schema(
       type: Number,
       default: 1,
     },
-    parts: [
-      {
-        topic: String,
-        lessons: [{ type: ObjectId, ref: "Lesson", autopopulate: true }],
-      },
-    ],
-   
+    parts: [{ type: ObjectId, ref: "Part" }],
+
     slug: { type: String, slug: "name", unique: true },
   },
   { timestamps: true }

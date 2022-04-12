@@ -7,9 +7,17 @@
     "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huynhdthanhtuan/learning-programming-online-website.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huynhdthanhtuan/learning-programming-online-website/issues"
+  },
+  "homepage": "https://github.com/huynhdthanhtuan/learning-programming-online-website#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
@@ -29,6 +37,7 @@
     "mongoose-delete": "^0.5.4",
     "mongoose-slug-generator": "^1.0.4",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
     "path-browserify": "^1.0.1",
     "react": "^17.0.2",
